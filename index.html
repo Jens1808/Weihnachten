@@ -15,7 +15,8 @@
       min-height: 100vh;
       font-family: Arial, sans-serif;
 
-      background-image: url("weihnachten-hintergrund.jpg");
+      /* Hintergrundbild aus dem Repo */
+      background-image: url("Moers1.jpeg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -26,11 +27,23 @@
       padding: 20px;
     }
 
+    /* dunkler Overlay für bessere Lesbarkeit */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+    }
+
     .card {
+      position: relative;
+      z-index: 1;
+
       background: rgba(0, 0, 0, 0.6);
       color: #ffffff;
-      max-width: 800px;
-      padding: 30px;
+      max-width: 850px;
+      width: 100%;
+      padding: 32px;
       border-radius: 18px;
       text-align: center;
       backdrop-filter: blur(6px);
@@ -45,7 +58,7 @@
     p {
       font-size: 1.1em;
       line-height: 1.6;
-      margin: 0 0 14px;
+      margin: 0 0 16px;
     }
 
     strong {
@@ -55,8 +68,10 @@
 </head>
 
 <body>
+  <div class="overlay"></div>
+
   <div class="card">
-    <h1>Frohe Weihnachten Ihr kleinen Schokohasen,🎄</h1>
+    <h1>Frohe Weihnachten ihr kleinen Schokohasen 🎄</h1>
 
 
     <p>
@@ -66,7 +81,7 @@
 
     <p>
       Für das kommende Jahr wünsche ich euch einen <strong>guten Rutsch</strong>,
-      vor allem Gesundheit, Glück, Erfolg und viele positive Momente –
+      vor allem jedoch Gesundheit, Glück, Erfolg und viele positive Momente –
       beruflich wie privat.
     </p>
 
