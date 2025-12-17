@@ -15,7 +15,6 @@
       min-height: 100vh;
       font-family: Arial, sans-serif;
 
-      /* Hintergrundbild aus dem Repo */
       background-image: url("Moers1.jpeg");
       background-size: cover;
       background-position: center;
@@ -35,9 +34,17 @@
       z-index: 0;
     }
 
+    /* Schneefall-Canvas */
+    #snow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
     .card {
       position: relative;
-      z-index: 1;
+      z-index: 3;
 
       background: rgba(0, 0, 0, 0.6);
       color: #ffffff;
@@ -69,10 +76,10 @@
 
 <body>
   <div class="overlay"></div>
+  <canvas id="snow"></canvas>
 
   <div class="card">
     <h1>Frohe Weihnachten ihr kleinen Schokohasen 🎄</h1>
-
 
     <p>
       ich wünsche euch allen <strong>frohe, ruhige und erholsame Weihnachten</strong>
@@ -100,5 +107,46 @@
       <strong>Jens</strong>
     </p>
   </div>
+
+  <!-- Schneefall Script -->
+  <script>
+    const canvas = document.getElementById("snow");
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    const flakes = Array.from({ length: 120 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 3 + 1,
+      s: Math.random() * 1 + 0.5
+    }));
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(255,255,255,0.8)";
+
+      flakes.forEach(f => {
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        f.y += f.s;
+        if (f.y > canvas.height) {
+          f.y = -5;
+          f.x = Math.random() * canvas.width;
+        }
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
 </body>
 </html>
